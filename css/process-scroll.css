@@ -1,0 +1,327 @@
+/* How it works — scroll-driven split: photo stack left, copy right */
+
+.section--process {
+  padding-bottom: 0;
+}
+
+.section--process .section__header {
+  margin-bottom: 2rem;
+}
+
+.process-fallback {
+  display: none;
+}
+
+.process-fallback .process-steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.process-scroll {
+  position: relative;
+  height: 400vh;
+  margin-top: 0.5rem;
+  margin-bottom: clamp(2rem, 6vw, 4rem);
+  background: linear-gradient(180deg, var(--bg) 0%, rgba(176, 141, 87, 0.06) 45%, var(--bg) 100%);
+}
+
+.process-scroll__viewport {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: calc(var(--header-h) + 1rem) max(1.25rem, (100vw - 1120px) / 2) 2.5rem;
+}
+
+.process-scroll__hint {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  opacity: 0.7;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.process-scroll__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  gap: clamp(2.5rem, 6vw, 5rem);
+  align-items: center;
+  width: min(1200px, 100%);
+  margin: 0 auto;
+}
+
+.process-scroll__left {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.process-scroll__right {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  min-height: 14rem;
+}
+
+/* Shared stack stage */
+.process-stack {
+  position: relative;
+  transform-style: preserve-3d;
+}
+
+.process-stack--photos {
+  width: min(100%, 34rem);
+  height: min(78vh, 32rem);
+  margin-left: clamp(0rem, 1vw, 0.5rem);
+  perspective: 1200px;
+}
+
+.process-stack--copy {
+  width: 100%;
+  max-width: 28rem;
+  min-height: min(50vh, 18rem);
+}
+
+.process-stack__item {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  visibility: hidden;
+  will-change: transform, opacity;
+  transform-origin: center center;
+  backface-visibility: hidden;
+}
+
+/* Big step number behind photo card */
+.process-stack__bg-num {
+  position: absolute;
+  left: -0.08em;
+  top: 50%;
+  transform: translateY(-52%);
+  z-index: 0;
+  font-family: var(--font-display-outline, var(--font-serif));
+  font-size: clamp(9rem, 22vw, 17rem);
+  font-weight: 400;
+  line-height: 0.85;
+  letter-spacing: -0.04em;
+  color: var(--accent);
+  opacity: 0.24;
+  pointer-events: none;
+  user-select: none;
+}
+
+.process-photo-card {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-lg);
+}
+
+.process-photo-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Right-side copy panels — hidden until JS activates the matching step */
+.process-copy {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0.5rem 0;
+  opacity: 0;
+  visibility: hidden;
+  will-change: transform, opacity;
+  transform-origin: left center;
+}
+
+.process-copy__eyebrow {
+  margin: 0 0 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.process-copy h3 {
+  margin: 0 0 1rem;
+  font-size: clamp(1.5rem, 2.8vw, 2.125rem);
+  color: var(--primary-deep);
+}
+
+.process-copy p {
+  margin: 0;
+  font-size: clamp(1rem, 1.5vw, 1.0625rem);
+  line-height: 1.65;
+  color: var(--text-muted);
+  max-width: 34rem;
+}
+
+@media (max-width: 900px) {
+  .process-scroll {
+    height: 360vh;
+  }
+
+  .process-scroll__viewport {
+    --process-pad-top: calc(var(--header-h) + 0.5rem);
+    --process-pad-bottom: 2.5rem;
+    padding: var(--process-pad-top) 1.25rem var(--process-pad-bottom);
+    align-items: stretch;
+    justify-content: center;
+  }
+
+  .process-scroll__hint {
+    bottom: 0.65rem;
+    font-size: 0.6875rem;
+  }
+
+  .process-scroll__layout {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 100%;
+    height: calc(100dvh - var(--process-pad-top) - var(--process-pad-bottom));
+    max-height: calc(100dvh - var(--process-pad-top) - var(--process-pad-bottom));
+    gap: clamp(0.65rem, 2dvh, 1rem);
+    justify-content: center;
+    margin: 0;
+  }
+
+  .process-scroll__left {
+    flex: 1.1 1 0;
+    min-height: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .process-scroll__right {
+    flex: 1 1 0;
+    min-height: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    text-align: center;
+  }
+
+  .process-stack--photos {
+    width: min(100%, 19rem);
+    height: 100%;
+    max-height: 100%;
+    margin: 0 auto;
+    perspective: 900px;
+  }
+
+  .process-stack--copy {
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    min-height: 0;
+    max-height: 100%;
+  }
+
+  .process-copy {
+    align-items: center;
+    text-align: center;
+    transform-origin: center center;
+    justify-content: flex-start;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .process-copy__eyebrow {
+    margin-bottom: 0.4rem;
+    font-size: 0.6875rem;
+  }
+
+  .process-copy h3 {
+    font-size: clamp(1.2rem, 4.8vw, 1.45rem);
+    margin-bottom: 0.5rem;
+    line-height: 1.25;
+  }
+
+  .process-copy p {
+    font-size: clamp(0.875rem, 3.6vw, 0.9375rem);
+    line-height: 1.5;
+    max-width: 22rem;
+    margin: 0 auto;
+  }
+
+  .process-stack__bg-num {
+    left: 50%;
+    transform: translate(-50%, -52%);
+    font-size: clamp(4.5rem, 22vw, 7.5rem);
+  }
+}
+
+@media (max-width: 767px) {
+  .process-scroll {
+    height: 320vh;
+  }
+
+  .process-scroll__viewport {
+    --process-pad-bottom: calc(var(--mobile-bar-h) + 2.75rem);
+  }
+
+  .process-scroll__hint {
+    bottom: calc(var(--mobile-bar-h) + 0.65rem);
+  }
+}
+
+@media (max-width: 380px) {
+  .process-scroll__viewport {
+    --process-pad-top: calc(var(--header-h) + 0.25rem);
+    --process-pad-bottom: calc(var(--mobile-bar-h) + 2.25rem);
+    padding-inline: 1rem;
+  }
+
+  .process-stack--photos {
+    width: min(100%, 16.5rem);
+  }
+
+  .process-copy h3 {
+    font-size: 1.125rem;
+  }
+
+  .process-copy p {
+    font-size: 0.8125rem;
+    line-height: 1.45;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .process-scroll {
+    display: none;
+  }
+
+  .section--process {
+    padding-bottom: 4rem;
+  }
+
+  .process-fallback {
+    display: block;
+    padding-bottom: 4rem;
+  }
+}

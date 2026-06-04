@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wireframe - Hartwell Injury Law Sample</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/wireframe.css">
+</head>
+<body class="wf-body">
+  <header class="wf-top">
+    <h1>Hartwell Injury Law - UX Wireframe</h1>
+    <p>Homepage information architecture · Desktop &amp; mobile · Maps to live pages in project root</p>
+  </header>
+
+  <div class="wf-toolbar">
+    <button type="button" class="is-active" data-view="desktop">Desktop (1200px)</button>
+    <button type="button" data-view="mobile">Mobile (390px)</button>
+    <a href="../index.html">→ View live site</a>
+    <a href="workflow.md">Workflow doc</a>
+  </div>
+
+  <div class="wf-legend">
+    <div class="wf-legend-item"><strong>Sticky header</strong> Logo · 5 nav links · phone · CTA</div>
+    <div class="wf-legend-item"><strong>Hero</strong> H1 + empathy · 2 CTAs · trust bar · attorney image</div>
+    <div class="wf-legend-item"><strong>Form band</strong> Short 4-field consult form beside copy</div>
+    <div class="wf-legend-item"><strong>Mobile bar</strong> Fixed Call Now + Free Case Review</div>
+  </div>
+
+  <div class="wf-wrap">
+    <!-- Desktop wireframe -->
+    <div id="desktop" class="wf-canvas wf-canvas--desktop is-active">
+      <div class="wf-block wf-block--sm wf-block--dark">Sticky header - phone (713) · Free Case Review</div>
+      <div class="wf-row wf-row--hero">
+        <div>
+          <div class="wf-block wf-block--hero wf-block--dark">Hero - H1 + subcopy + [Free Review] [Call 24/7]</div>
+          <div class="wf-row wf-row--4">
+            <div class="wf-block wf-block--sm">★ 4.9</div>
+            <div class="wf-block wf-block--sm">$48M+</div>
+            <div class="wf-block wf-block--sm">25+ yrs</div>
+            <div class="wf-block wf-block--sm">$0 fee</div>
+          </div>
+        </div>
+        <div class="wf-block wf-block--lg">Attorney portrait + credential badge</div>
+      </div>
+      <div class="wf-row wf-row--2">
+        <div class="wf-block wf-block--md">Form intro copy</div>
+        <div class="wf-block wf-block--accent">Consultation form - name · phone · email · detail</div>
+      </div>
+      <div class="wf-block wf-block--md">Results - 4 outcome cards + Google pill + disclaimer</div>
+      <div class="wf-row wf-row--3">
+        <div class="wf-block">Testimonial</div>
+        <div class="wf-block">Testimonial</div>
+        <div class="wf-block">Testimonial</div>
+      </div>
+      <div class="wf-block wf-block--sm wf-block--accent">Inline CTA - Request review</div>
+      <div class="wf-row wf-row--3">
+        <div class="wf-block">Why us ×5</div>
+        <div class="wf-block">Why us</div>
+        <div class="wf-block">Why us</div>
+      </div>
+      <div class="wf-row wf-row--3">
+        <div class="wf-block">Practice card</div>
+        <div class="wf-block">Practice card</div>
+        <div class="wf-block">Practice card</div>
+      </div>
+      <div class="wf-row wf-row--2">
+        <div class="wf-block wf-block--lg">Attorney bio</div>
+        <div class="wf-block wf-block--lg">Attorney bio</div>
+      </div>
+      <div class="wf-row wf-row--4">
+        <div class="wf-block">Step 1</div>
+        <div class="wf-block">Step 2</div>
+        <div class="wf-block">Step 3</div>
+        <div class="wf-block">Step 4</div>
+      </div>
+      <div class="wf-block wf-block--md">FAQ accordion ×4</div>
+      <div class="wf-block wf-block--hero wf-block--dark">Final CTA band + split form / office info</div>
+      <div class="wf-block wf-block--dark">Footer - 4 columns · disclaimer</div>
+    </div>
+
+    <!-- Mobile wireframe -->
+    <div id="mobile" class="wf-canvas wf-canvas--mobile">
+      <div class="wf-block wf-block--sm wf-block--dark">Header - logo · menu</div>
+      <div class="wf-block wf-block--hero wf-block--dark">Hero stack - H1 · CTAs · trust 2×2</div>
+      <div class="wf-block wf-block--lg">Attorney image</div>
+      <div class="wf-block wf-block--accent">Full-width form</div>
+      <div class="wf-block">Result cards 2-col</div>
+      <div class="wf-block">Testimonial stack</div>
+      <div class="wf-block">Why cards stack</div>
+      <div class="wf-block">Practice cards stack</div>
+      <div class="wf-block">Attorney stack</div>
+      <div class="wf-block">Process stack</div>
+      <div class="wf-block">FAQ</div>
+      <div class="wf-block wf-block--dark">CTA + form</div>
+      <div class="wf-block wf-block--dark">Footer</div>
+      <div class="wf-block wf-block--accent" style="position:sticky;bottom:0;margin:0;border-radius:0;">Sticky bar - Call | Free Review</div>
+    </div>
+  </div>
+
+  <p class="wf-note">Inner pages: About · Practice Areas hub · Car Accident (template) · Results · Contact - see workflow.md</p>
+
+  <script>
+    document.querySelectorAll(".wf-toolbar button").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll(".wf-toolbar button").forEach((b) => b.classList.remove("is-active"));
+        btn.classList.add("is-active");
+        const view = btn.dataset.view;
+        document.getElementById("desktop").classList.toggle("is-active", view === "desktop");
+        document.getElementById("mobile").classList.toggle("is-active", view === "mobile");
+      });
+    });
+  </script>
+</body>
+</html>

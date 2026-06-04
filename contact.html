@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Contact Hartwell Injury Law - free Houston personal injury consultation. Call (713) 555-0147 or submit our short form.">
+  <title>Contact Us | Hartwell Injury Law</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+  <a href="#main" class="sr-only">Skip to main content</a>
+  <div id="site-header"></div>
+
+  <main id="main">
+    <section class="page-hero">
+      <div class="container">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <a href="index.html">Home</a> / <span aria-current="page">Contact</span>
+        </nav>
+        <h1>Free case review - start here.</h1>
+        <p>Call anytime for new injury inquiries, or send the short form below. No fee unless we win.</p>
+        <div class="btn-group" style="margin-top:1.5rem;">
+          <a href="tel:+17135550147" class="btn btn--accent">Call (713) 555-0147</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="container page-split">
+        <div class="reveal">
+          <div class="map-card">
+            <img src="assets/images/contact-skyline.jpg" alt="Houston downtown skyline" width="800" height="280" loading="lazy" style="width:100%;height:200px;object-fit:cover;">
+            <div class="map-card__body">
+              <h2>Visit us</h2>
+              <p>1200 Main Street, Suite 2400<br>Houston, TX 77002</p>
+              <dl class="contact-hours">
+                <dt>Office hours</dt>
+                <dd>Monday – Friday, 8:00 AM – 6:00 PM</dd>
+                <dt>New injury inquiries</dt>
+                <dd>Phone answered 24/7 for urgent matters</dd>
+              </dl>
+              <p><a href="tel:+17135550147" class="btn btn--outline">Click to call</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="form-card reveal" id="contact-form">
+          <h3 class="form-card__title">Request your free case review</h3>
+          <p class="form-card__sub">We typically respond within one business hour.</p>
+          <form data-consult-form action="#" method="post">
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="c-name">Full name *</label>
+                <input type="text" id="c-name" name="name" required autocomplete="name">
+              </div>
+              <div class="form-group">
+                <label for="c-phone">Phone *</label>
+                <input type="tel" id="c-phone" name="phone" required autocomplete="tel">
+              </div>
+              <div class="form-group">
+                <label for="c-email">Email</label>
+                <input type="email" id="c-email" name="email" autocomplete="email">
+              </div>
+              <div class="form-group">
+                <label for="c-detail">What happened? *</label>
+                <textarea id="c-detail" name="detail" required></textarea>
+              </div>
+              <button type="submit" class="btn btn--primary btn--block">Submit - Free Review</button>
+            </div>
+            <p class="form-note">Confidential · No obligation · Sample demo form</p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt">
+      <div class="container section__header--center reveal">
+        <h2>Common questions before you reach out</h2>
+        <p class="section__lead"><a href="index.html#faq">View full FAQ on homepage →</a></p>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+  <script src="js/site-chrome.js"></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>
