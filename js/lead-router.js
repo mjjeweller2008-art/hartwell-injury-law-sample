@@ -1,7 +1,7 @@
 (function () {
   "use strict";
 
-  const STORAGE_KEY = "hartwell-lead-router-dismissed";
+  const STORAGE_KEY = "hartwell-lead-router-seen";
   const FIRM_NAME = "Hartwell Injury Law";
 
   const OPTIONS = [
@@ -50,18 +50,24 @@
     </div>
   </div>`;
 
+  function getNavigationType() {
+    const entry = performance.getEntriesByType("navigation")[0];
+    return entry && entry.type ? entry.type : "navigate";
+  }
+
   function shouldShow() {
     try {
-      return !sessionStorage.getItem(STORAGE_KEY) && !localStorage.getItem(STORAGE_KEY);
+      localStorage.removeItem(STORAGE_KEY);
+      if (getNavigationType() === "reload") return true;
+      return !sessionStorage.getItem(STORAGE_KEY);
     } catch {
       return true;
     }
   }
 
-  function markDismissed() {
+  function markSeen() {
     try {
       sessionStorage.setItem(STORAGE_KEY, "1");
-      localStorage.setItem(STORAGE_KEY, "1");
     } catch {
       /* ignore */
     }
@@ -70,6 +76,7 @@
   function init() {
     if (!shouldShow()) return;
 
+    markSeen();
     document.body.insertAdjacentHTML("beforeend", markup);
 
     const root = document.getElementById("lead-router");
@@ -92,7 +99,6 @@
     function close(navigateTo) {
       root.classList.remove("is-open");
       document.body.style.overflow = "";
-      markDismissed();
       let done = false;
       const finish = () => {
         if (done) return;
