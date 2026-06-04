@@ -112,6 +112,6 @@
 
   const headerSlot = document.getElementById("site-header");
   const footerSlot = document.getElementById("site-footer");
-  if (headerSlot) headerSlot.outerHTML = headerHTML;
-  if (footerSlot) footerSlot.outerHTML = footerHTML;
+  if (headerSlot) headerSlot.innerHTML = headerHTML;
+  if (footerSlot) footerSlot.innerHTML = footerHTML;
 })();

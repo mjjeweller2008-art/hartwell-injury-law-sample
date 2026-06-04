@@ -60,7 +60,7 @@
   overflow: hidden;
 }
 
-/* Image-only hero (home) — full viewport */
+/* Image-only hero (home) — full viewport, flush to top */
 .hero--image-only.hero--with-copy {
   position: relative;
   height: 100vh;
@@ -70,6 +70,12 @@
   padding: 0;
   background: #2a2210;
   overflow: hidden;
+}
+
+.page-home .hero--editorial.hero--image-only {
+  min-height: 100dvh;
+  padding-top: 0;
+  padding-bottom: 0;
 }
 
 .hero--image-only .hero__media {
@@ -1067,7 +1073,7 @@
 
 /* Mobile hero: single image, hide collage floats */
 @media (max-width: 767px) {
-  .hero--editorial {
+  .hero--editorial:not(.hero--image-only) {
     min-height: auto;
     padding-bottom: 2.5rem;
   }

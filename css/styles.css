@@ -254,7 +254,7 @@ p:last-child { margin-bottom: 0; }
     0 8px 28px rgba(92, 71, 36, 0.1);
 }
 
-/* Home: navbar overlays hero, flush to top */
+/* Home: navbar overlays hero, flush to top (no layout gap above hero) */
 .page-home #site-header {
   position: fixed;
   top: 0;
@@ -267,7 +267,28 @@ p:last-child { margin-bottom: 0; }
 }
 
 .page-home #site-header .site-header {
+  position: relative;
+  top: 0;
   pointer-events: auto;
+}
+
+/* Fallback if header is injected without #site-header wrapper */
+.page-home > .site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+}
+
+.page-home main {
+  margin-top: 0;
+}
+
+.page-home .hero.hero--image-only {
+  margin-top: 0;
+  padding-top: 0;
+  padding-bottom: 0;
 }
 
 .page-home .logo__name,
